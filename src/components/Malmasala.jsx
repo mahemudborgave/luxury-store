@@ -1,8 +1,9 @@
-function Malmasala(props) {
+function Malmasala({vlabel, vlink, postedby}) {
     return (
         <div className="border-2 border-solid border-pink-800 mt-3 text-xl p-3">
-            <p>{props.vlabel}</p>
-            <a href={props.vlabel}>Here is your link</a>
+            <p>{vlabel}</p>
+            <a href={vlink} className="text-pink-500 visited:text-pink-400">Here is your link</a>
+            <p className="italic text-[#979797]">- {postedby}</p>
         </div>
     );
 }

@@ -2,14 +2,16 @@ import { useState } from 'react'
 import './App.css'
 import Header from './components/Header'
 import Trending from './components/Trending'
+import { Outlet, useLocation } from 'react-router-dom'
+import AddButton from './components/AddButton'
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  const location = useLocation();
   return (
     <>
       <Header />
-      <Trending />
+      <Outlet />
+      {location.pathname !== '/add' && <AddButton />}
     </>
   ) 
 }
