@@ -13,7 +13,7 @@ function App() {
       <Outlet />
       {location.pathname !== '/add' && <AddButton />}
     </>
-  ) 
+  )
 }
 
 export default App
