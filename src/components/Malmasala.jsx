@@ -1,13 +1,15 @@
 import React from "react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Malmasala({ vlabel, vlink, postedby }) {
     const copyToClipboard = () => {
         navigator.clipboard.writeText(vlink).then(
             () => {
-                alert("Link copied to clipboard!");
+                toast.success("Link copied to clipboard!");
             },
             () => {
-                alert("Failed to copy the link.");
+                toast.error("Failed to copy the link.");
             }
         );
     };
@@ -22,6 +24,7 @@ function Malmasala({ vlabel, vlink, postedby }) {
             >
                 Copy Link
             </button>
+            <ToastContainer position="bottom-right" autoClose={2000} />
         </div>
     );
 }
