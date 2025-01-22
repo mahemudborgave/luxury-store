@@ -24,7 +24,7 @@ function SearchBar() {
     setIsLoading(true);
     try {
       const response = await fetch(
-        `http://localhost:5000/search-data?vlabel=${encodeURIComponent(query)}`,
+        `https://luxurystorebackend.onrender.com/search-data?vlabel=${encodeURIComponent(query)}`,
         {
           method: 'GET',
         }
