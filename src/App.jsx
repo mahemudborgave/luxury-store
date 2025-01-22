@@ -4,6 +4,7 @@ import Header from './components/Header'
 import Trending from './components/Trending'
 import { Outlet, useLocation } from 'react-router-dom'
 import AddButton from './components/AddButton'
+import Models from './components/Models'
 
 function App() {
   const location = useLocation();

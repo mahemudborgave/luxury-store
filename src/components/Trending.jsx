@@ -25,7 +25,7 @@ function Trending() {
     }, []);
 
     if (loading) {
-        return <div>Loading...</div>; // Show a loading message while the data is being fetched
+        return <div className="text-2xl py-4">Loading...</div>; // Show a loading message while the data is being fetched
     }
 
     if (error) {
@@ -33,9 +33,9 @@ function Trending() {
     }
 
     return (
-        <div className="text-3xl py-4 mt-3">
-            <p>Trending Now 🔥</p>
-            <div className="h-[600px] overflow-auto">
+        <div className="text-2xl">
+            <p className="pt-4">Trending Now 🔥</p>
+            <div className="h-[300px] overflow-auto">
                 {data.map((item, index) => (
                     <Malmasala 
                         key={index} // Add a unique key for each component

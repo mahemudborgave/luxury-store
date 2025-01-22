@@ -6,6 +6,8 @@ import Trending from './components/Trending.jsx'
 import NotAvailable from './components/NotAvailable.jsx'
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
 import AddVideoDetail from './components/AddVideoDetail.jsx'
+import Models from './components/Models.jsx'
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -14,6 +16,7 @@ const router = createBrowserRouter(
       <Route path='/home' element={<Trending />} />
       <Route path='/not' element={<NotAvailable />} />
       <Route path='/add' element={<AddVideoDetail />} />
+      <Route path='/models' element={<Models />} />
     </Route>
   )
 )
