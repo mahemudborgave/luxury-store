@@ -8,6 +8,7 @@ function AddVideoDetail() {
         vlink: '',
         postedby: '',
     });
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const navigate = useNavigate();
 
@@ -15,10 +16,10 @@ function AddVideoDetail() {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
     };
-
     const handleSubmit = async (e) => {
+        e.preventDefault();
+        setIsSubmitting(true);
         try {
-            e.preventDefault();
             const response = await axios.post('https://luxurystorebackend.onrender.com/add-data', formData);
             alert(response.data.message);
             setFormData({ vlabel: '', vlink: '', postedby: '' });
@@ -26,6 +27,8 @@ function AddVideoDetail() {
         } catch (error) {
             console.error(error);
             alert('Failed to add data');
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
@@ -60,9 +63,11 @@ function AddVideoDetail() {
                     value={formData.postedby}
                     className="border-pink-700 border-solid border-2 block my-3 w-full"
                     onChange={handleChange}
-                    required />
-
-                <button type="submit" className="bg-pink-500 text-white px-4 py-2 mt-8 block text-center w-full">Submit</button>
+                    required
+                />
+                <button type="submit" className="bg-pink-500 text-white px-4 py-2 mt-8 block text-center w-full" disabled={isSubmitting}>
+                    {isSubmitting ? 'Submitting...' : 'Submit'}
+                </button>
             </form>
 
             <button className="mt-3 block text-red-500 underline" onClick={() => { navigate('/home') }}>Home</button>

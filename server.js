@@ -44,6 +44,7 @@ app.get('/get-data', async (req, res) => {
     }
 });
 
+// 
 app.delete('/delete-data', async (req, res) => {
     const { vlabel } = req.body;
     try {
@@ -56,6 +57,24 @@ app.delete('/delete-data', async (req, res) => {
         return res.status(500).json({ message: 'Error while deleting data', error });
     }
 });
+
+// API Route to Get Data by Label
+app.get('/search-data', async (req, res) => {
+    const { vlabel } = req.query;
+    if (!vlabel) {
+        return res.status(400).json({ message: 'vlabel query parameter is required' });
+    }
+    try {
+        const data = await DataModel.find({ vlabel: { $regex: vlabel, $options: 'i' } });
+        if (data.length === 0) {
+            return res.status(404).json({ message: 'Data not found' });
+        }
+        return res.status(200).json(data);
+    } catch (error) {
+        return res.status(500).json({ message: 'Error fetching data', error });
+    }
+});
+
 
 app.use(cors({
     origin: 'http://localhost:5173', // Allow frontend at port 3000
