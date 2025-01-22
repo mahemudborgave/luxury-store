@@ -35,7 +35,7 @@ function Trending() {
     return (
         <div className="text-2xl">
             <p className="pt-4">Trending Now 🔥</p>
-            <div className="h-[400px] overflow-auto">
+            <div className="h-[400px] overflow-y-scroll scrollbar-thin scrollbar-thumb-pink-500 scrollbar-track-gray-300">
                 {data.map((item, index) => (
                     <Malmasala 
                         key={index} // Add a unique key for each component
