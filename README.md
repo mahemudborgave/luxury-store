@@ -12,7 +12,7 @@ Run Project
 ```
 
 
-Features being added
+Features Added
 
 - Copy Link
 - Add video
