@@ -8,7 +8,7 @@ function Trending() {
     const [loading, setLoading] = useState(true); // State to handle loading state
     const [error, setError] = useState(null);
 
-    useEffect(() => {        
+    useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await axios.get('https://luxurystorebackend.onrender.com/get-data');
@@ -16,11 +16,11 @@ function Trending() {
                 setData(response.data); // Store the response data
                 setLoading(false); // Set loading to false once data is fetched
             } catch (error) {
-                setError('Error fetching data');
+                setError(`Error fetching data: ${error.message}`);
                 setLoading(false);
             }
         };
-        
+
         fetchData(); // Call the fetch function        
     }, []);
 
@@ -35,9 +35,9 @@ function Trending() {
     return (
         <div className="text-2xl">
             <p className="pt-4">Trending Now 🔥</p>
-            <div className="h-[400px] overflow-y-scroll scrollbar-thin scrollbar-thumb-pink-500 scrollbar-track-gray-300">
+            <div className="h-full overflow-y-scroll scrollbar-thin scrollbar-thumb-pink-500 scrollbar-track-gray-300">
                 {data.map((item, index) => (
-                    <Malmasala 
+                    <Malmasala
                         key={index} // Add a unique key for each component
                         vlabel={item.vlabel}
                         vlink={item.vlink}
