@@ -40,11 +40,10 @@ function SearchBar() {
         if (response.ok) {
           const data = await response.json();
           setSuggestions(data); // Update suggestions with the fetched data
-          setSearchedData({ ...searchedData, data }); // Set the fetched data in the context
+          // setSearchedData({ ...searchedData, data }); // Set the fetched data in the context
           console.log(data);
         } else {
           setSuggestions([]); // Clear suggestions on error
-          setSearchedData({ ...searchedData, data: 'Not Found' }); // Set the fetched data in the context
         }
       } catch (error) {
         console.error('Error fetching suggestions:', error);
@@ -91,7 +90,6 @@ function SearchBar() {
         // onClick={() => fetchSuggestions(query)}
         onClick={() => {
           fetchSuggestions(query);
-          setSearchedData({ ...searchedData, query });
         }}
         className="text-white px-4 py-2 ml-2 rounded bg-pink-600 hover:bg-pink-700 transition-colors duration-300"
       >
