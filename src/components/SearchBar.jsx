@@ -1,13 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { toast } from 'react-toastify';
-import { useSearch } from '../context/search';
 
 function SearchBar() {
   const [query, setQuery] = useState(''); // State to store the search query
   const [suggestions, setSuggestions] = useState([]); // State to store the suggestions
   const [isLoading, setIsLoading] = useState(false); // State to manage loading state
 
-  const { searchedData, setSearchedData } = useSearch();
   const searchBarRef = useRef(null); // Ref to detect clicks outside
 
   // Handle input change event
@@ -40,8 +38,7 @@ function SearchBar() {
         if (response.ok) {
           const data = await response.json();
           setSuggestions(data); // Update suggestions with the fetched data
-          // setSearchedData({ ...searchedData, data }); // Set the fetched data in the context
-          console.log(data);
+          // console.log(data);
         } else {
           setSuggestions([]); // Clear suggestions on error
         }
@@ -78,7 +75,7 @@ function SearchBar() {
   }, []);
 
   return (
-    <div className="my-2 w-full flex relative" ref={searchBarRef}>
+    <div className="my-2 w-full flex relative px-3" ref={searchBarRef}>
       <input
         type="text"
         value={query}
