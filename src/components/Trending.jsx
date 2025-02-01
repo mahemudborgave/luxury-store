@@ -26,7 +26,7 @@ function Trending() {
 
     if (loading) {
         return (
-            <div className="flex items-center justify-center h-full">
+            <div className="flex items-center justify-center h-full p-16">
                 <svg
                     className="animate-spin -ml-1 mr-3 h-10 w-10 text-pink-500"
                     xmlns="http://www.w3.org/2000/svg"
@@ -47,7 +47,7 @@ function Trending() {
                         d="M4 12a8 8 0 018-8v8H4z"
                     ></path>
                 </svg>
-                <span className="text-2xl">Loading...</span>
+                <span className="text-2xl animate-pulse">Loading...</span>
             </div>
         );
     }
