@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { toast } from 'react-toastify';
+import { useSearch } from '../context/search';
 
 function SearchBar() {
   const [query, setQuery] = useState(''); // State to store the search query
   const [suggestions, setSuggestions] = useState([]); // State to store the suggestions
   const [isLoading, setIsLoading] = useState(false); // State to manage loading state
 
+  const { searchedData, setSearchedData } = useSearch();
   const searchBarRef = useRef(null); // Ref to detect clicks outside
 
   // Handle input change event
@@ -24,7 +26,7 @@ function SearchBar() {
   const fetchSuggestions = async (query) => {
     setIsLoading(true);
 
-    if(query == "") {
+    if (query == "") {
       toast.warn("Enter text ... ")
     }
     else {
@@ -38,9 +40,11 @@ function SearchBar() {
         if (response.ok) {
           const data = await response.json();
           setSuggestions(data); // Update suggestions with the fetched data
+          setSearchedData({ ...searchedData, data }); // Set the fetched data in the context
           console.log(data);
         } else {
           setSuggestions([]); // Clear suggestions on error
+          setSearchedData({ ...searchedData, data: 'Not Found' }); // Set the fetched data in the context
         }
       } catch (error) {
         console.error('Error fetching suggestions:', error);
@@ -84,16 +88,20 @@ function SearchBar() {
         className="border rounded px-4 py-2 border-pink-600 grow"
       />
       <button
-        onClick={() => fetchSuggestions(query)}
+        // onClick={() => fetchSuggestions(query)}
+        onClick={() => {
+          fetchSuggestions(query);
+          setSearchedData({ ...searchedData, query });
+        }}
         className="text-white px-4 py-2 ml-2 rounded bg-pink-600 hover:bg-pink-700 transition-colors duration-300"
       >
         Search
       </button>
 
       {suggestions.length > 0 && (
-          <div className='bg-[#eeeeee] absolute top-12 w-full'>
+        <div className='bg-[#eeeeee] absolute top-12 w-full'>
           {isLoading && <div className="text-gray-500 p-2">Loading suggestions...</div>}
-  
+
           {/* Suggestion dropdown */}
           {suggestions.length > 0 && (
             <ul className="bg-white border border-gray-300 shadow-lg max-h-40 overflow-y-auto">
@@ -110,10 +118,6 @@ function SearchBar() {
           )}
         </div>
       )}
-
-      
-
-      
     </div>
   );
 }
