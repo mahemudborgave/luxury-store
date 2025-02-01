@@ -69,9 +69,6 @@ function AddVideoDetail() {
                     {isSubmitting ? 'Submitting...' : 'Submit'}
                 </button>
             </form>
-
-            <button className="mt-3 block text-red-500 underline" onClick={() => { navigate('/home') }}>Home</button>
-
         </div>
     );
 }

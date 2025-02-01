@@ -12,7 +12,7 @@ function Header() {
     return (
         <div className="sticky top-0 z-10 w-full bg-gray-100">
             <div className="flex justify-between p-3 bg-pink-500">
-                <p className="text-3xl font-times font-bold">LuxuryStore</p>
+                <p className="text-3xl font-times font-bold" onClick={() => { navigate('/home') }}>LuxuryStore</p>
                 <span
                     className="material-symbols-outlined text-4xl m-0 p-0 cursor-pointer"
                     onClick={toggleSearchBar}
