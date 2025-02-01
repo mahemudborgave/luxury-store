@@ -8,7 +8,7 @@ function Trending() {
     const [loading, setLoading] = useState(true); // State to handle loading state
     const [error, setError] = useState(null);
 
-    useEffect(() => {        
+    useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await axios.get('https://luxurystorebackend.onrender.com/get-data');
@@ -16,16 +16,40 @@ function Trending() {
                 setData(response.data); // Store the response data
                 setLoading(false); // Set loading to false once data is fetched
             } catch (error) {
-                setError('Error fetching data');
+                setError(`Error fetching data: ${error.message}`);
                 setLoading(false);
             }
         };
-        
+
         fetchData(); // Call the fetch function        
     }, []);
 
     if (loading) {
-        return <div className="text-2xl py-4">Loading...</div>; // Show a loading message while the data is being fetched
+        return (
+            <div className="flex items-center justify-center h-full p-16">
+                <svg
+                    className="animate-spin -ml-1 mr-3 h-10 w-10 text-pink-500"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                >
+                    <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                    ></circle>
+                    <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8v8H4z"
+                    ></path>
+                </svg>
+                <span className="text-2xl animate-pulse">Loading...</span>
+            </div>
+        );
     }
 
     if (error) {
@@ -33,11 +57,11 @@ function Trending() {
     }
 
     return (
-        <div className="text-2xl">
+        <div className="text-2xl sm:px-8 px-4">
             <p className="pt-4">Trending Now 🔥</p>
-            <div className="h-[400px] overflow-y-scroll scrollbar-thin scrollbar-thumb-pink-500 scrollbar-track-gray-300">
+            <div className="h-full py-4">
                 {data.map((item, index) => (
-                    <Malmasala 
+                    <Malmasala
                         key={index} // Add a unique key for each component
                         vlabel={item.vlabel}
                         vlink={item.vlink}
