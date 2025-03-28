@@ -62,7 +62,7 @@ function Trending() {
             <div className="h-full py-4">
                 {data.map((item, index) => (
                     <Malmasala
-                        key={index} // Add a unique key for each component
+                        key={index}
                         vlabel={item.vlabel}
                         vlink={item.vlink}
                         postedby={item.postedby}
