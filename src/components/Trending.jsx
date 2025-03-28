@@ -53,7 +53,7 @@ function Trending() {
     }
 
     if (error) {
-        return <div>{error}</div>; // Show error message if there’s an issue fetching the data
+        return <div>{error}</div>;
     }
 
     return (
